@@ -36,6 +36,7 @@ class m140925_205959_content extends Migration
         $this->createIndex('category', '{{%article}}', 'cat_id');
         $this->createIndex('cov', '{{%article}}', 'cover_id');
         $this->createIndex('public', '{{%article}}', ['active', 'publishto']);
+        $this->createIndex('slug', '{{%article}}', 'slug');
 
         /* MYSQL */
         $this->createTable(
@@ -69,6 +70,7 @@ class m140925_205959_content extends Migration
         );
 
         $this->createIndex('ord', '{{%category}}', 'ord');
+        $this->createIndex('slug', '{{%category}}', 'slug');
 
 
         /* MYSQL */
@@ -133,6 +135,7 @@ class m140925_205959_content extends Migration
         );
         $this->createIndex('cov', '{{%news}}', 'cover_id');
         $this->createIndex('public', '{{%news}}', ['active', 'publishto']);
+        $this->createIndex('slug', '{{%news}}', ['slug'], true);
 
         /* MYSQL */
         $this->createTable(
@@ -152,7 +155,7 @@ class m140925_205959_content extends Migration
             ], $tableOptions
         );
 
-        $this->createIndex('public', '{{%page}}', ['active']);
+        $this->createIndex('slug', '{{%page}}', ['slug'], true);
 
         /* MYSQL */
         $this->createTable(
