@@ -12,7 +12,7 @@ class m140925_205959_content extends Migration
             $tableOptions = 'CHARACTER SET utf8 COLLATE utf8_general_ci ENGINE=InnoDB';
         }
         $this->createTable(
-            '{{%article}}', [
+            'IF NOT EXISTS {{%article}}', [
                 'id' => 'INT(11) NOT NULL AUTO_INCREMENT',
                 'cat_id' => 'INT(11) NOT NULL',
                 'cover_id' => 'INT(11) NULL',
@@ -33,11 +33,13 @@ class m140925_205959_content extends Migration
             ], $tableOptions
         );
 
-
+        $this->createIndex('category', '{{%article}}', 'cat_id');
+        $this->createIndex('cov', '{{%article}}', 'cover_id');
+        $this->createIndex('public', '{{%article}}', ['active', 'publishto']);
 
         /* MYSQL */
         $this->createTable(
-            '{{%attachments}}', [
+            'IF NOT EXISTS {{%attachments}}', [
                 'id' => 'INT(11) NOT NULL AUTO_INCREMENT',
                 'filename' => 'VARCHAR(255) NOT NULL',
                 'filetitle' => 'VARCHAR(255) NOT NULL',
@@ -48,9 +50,11 @@ class m140925_205959_content extends Migration
             ], $tableOptions
         );
 
+        $this->createIndex('type_attach', '{{%attachments}}', 'type');
+
         /* MYSQL */
         $this->createTable(
-            '{{%category}}', [
+            'IF NOT EXISTS {{%category}}', [
                 'id' => 'INT(11) NOT NULL AUTO_INCREMENT',
                 'name' => 'VARCHAR(200) NOT NULL',
                 'slug' => 'VARCHAR(255) NOT NULL',
@@ -64,9 +68,12 @@ class m140925_205959_content extends Migration
             ], $tableOptions
         );
 
+        $this->createIndex('ord', '{{%category}}', 'ord');
+
+
         /* MYSQL */
         $this->createTable(
-            '{{%covers}}', [
+            'IF NOT EXISTS {{%covers}}', [
                 'id' => 'INT(11) NOT NULL AUTO_INCREMENT',
                 'filename' => 'VARCHAR(255) NOT NULL',
                 'conttype' => 'ENUM(\'news\',\'art\') NOT NULL DEFAULT \'news\'',
@@ -78,7 +85,7 @@ class m140925_205959_content extends Migration
 
         /* MYSQL */
         $this->createTable(
-            '{{%feedback}}', [
+            'IF NOT EXISTS {{%feedback}}', [
                 'id' => 'INT(11) NOT NULL AUTO_INCREMENT',
                 'name' => 'VARCHAR(200) NOT NULL',
                 'mail' => 'VARCHAR(200) NOT NULL',
@@ -92,7 +99,7 @@ class m140925_205959_content extends Migration
 
         /* MYSQL */
         $this->createTable(
-            '{{%meta}}', [
+            'IF NOT EXISTS {{%meta}}', [
                 'id' => 'INT(11) NOT NULL AUTO_INCREMENT',
                 'model_id' => 'VARCHAR(50) NOT NULL',
                 'model' => 'VARCHAR(255) NOT NULL',
@@ -105,7 +112,7 @@ class m140925_205959_content extends Migration
 
         /* MYSQL */
         $this->createTable(
-            '{{%news}}', [
+            'IF NOT EXISTS {{%news}}', [
                 'id' => 'INT(11) NOT NULL AUTO_INCREMENT',
                 'cover_id' => 'INT(11) NULL',
                 'name' => 'VARCHAR(200) NOT NULL',
@@ -124,11 +131,12 @@ class m140925_205959_content extends Migration
                 'PRIMARY KEY (`id`)'
             ], $tableOptions
         );
-
+        $this->createIndex('cov', '{{%news}}', 'cover_id');
+        $this->createIndex('public', '{{%news}}', ['active', 'publishto']);
 
         /* MYSQL */
         $this->createTable(
-            '{{%page}}', [
+            'IF NOT EXISTS {{%page}}', [
                 'id' => 'INT(11) NOT NULL AUTO_INCREMENT',
                 'name' => 'VARCHAR(200) NOT NULL',
                 'slug' => 'VARCHAR(255) NOT NULL',
@@ -144,9 +152,11 @@ class m140925_205959_content extends Migration
             ], $tableOptions
         );
 
+        $this->createIndex('public', '{{%page}}', ['active']);
+
         /* MYSQL */
         $this->createTable(
-            '{{%smallnews}}', [
+            'IF NOT EXISTS {{%smallnews}}', [
                 'id' => 'INT(11) NOT NULL AUTO_INCREMENT',
                 'name' => 'VARCHAR(255) NOT NULL',
                 'text' => 'TEXT NOT NULL',
@@ -158,9 +168,11 @@ class m140925_205959_content extends Migration
             ], $tableOptions
         );
 
+        $this->createIndex('public', '{{%smallnews}}', ['active']);
+
         /* MYSQL */
         $this->createTable(
-            '{{%tagged}}', [
+            'IF NOT EXISTS {{%tagged}}', [
                 'tid' => 'INT(11) NOT NULL AUTO_INCREMENT',
                 'tagid' => 'INT(11) NOT NULL',
                 'contid' => 'INT(11) NOT NULL',
@@ -168,10 +180,13 @@ class m140925_205959_content extends Migration
                 'PRIMARY KEY (`tid`)'
             ], $tableOptions
         );
+        $this->createIndex('tagid', '{{%tagged}}', 'tagid');
+        $this->createIndex('contid', '{{%contid}}', 'contid');
+        $this->createIndex('tag_typr', '{{%tagged}}', ['conttype']);
 
         /* MYSQL */
         $this->createTable(
-            '{{%tags}}', [
+            'IF NOT EXISTS {{%tags}}', [
                 'tag_id' => 'INT(11) NOT NULL AUTO_INCREMENT',
                 'tagname' => 'VARCHAR(50) NOT NULL',
                 'freeq' => 'INT(11) NOT NULL',
