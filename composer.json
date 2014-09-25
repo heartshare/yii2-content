@@ -11,8 +11,35 @@
         }
     ],
     "require": {
-        "yiisoft/yii2": "*"
+	    "yiisoft/yii2": "*",
+	    "yiisoft/yii2-bootstrap": "*",
+	    "fortawesome/font-awesome": "*",
+	    "insolita/yii2-widgets": "dev-master",
+	    "insolita/yii2-supergrid": "dev-master",
+	    "himiklab/yii2-colorbox-widget": "dev-master",
+	    "yiisoft/yii2-imagine": "2.0.0-beta",
+	    "yurkinx/yii2-image": "dev-master",
+	    "2amigos/yii2-selectize-widget": "0.1.1",
+	    "insolita/yii2-iconpicker": "dev-master"
     },
+	"repositories": [
+		{
+			"type": "git",
+			"url": "https://github.com/Insolita/yii2-share42-widget.git"
+		},
+		{
+			"type": "git",
+			"url": "https://github.com/Insolita/yii2-iconpicker.git"
+		},
+		{
+			"type": "git",
+			"url": "https://github.com/Insolita/supergrid.git"
+		},
+		{
+			"type": "git",
+			"url": "https://github.com/Insolita/yii2-widgets.git"
+		}
+	],
     "autoload": {
         "psr-4": {
             "insolita\\content\\": ""
