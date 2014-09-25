@@ -246,7 +246,13 @@ class Page extends SActiveRecord
 
     public function afterFind()
     {
-        $this->addtomenu = Url::toRoute(['/content/front/page', 'slug' => $this->slug]);
+        if (Yii::$app->id == 'app-backend') {
+            $this->addtomenu = Yii::$app->fronturlManager->createAbsoluteUrl(
+                ['/content/front/page', 'slug' => $this->slug]
+            );
+        } else {
+            $this->addtomenu = Yii::$app->urlManager->createAbsoluteUrl(['/content/front/page', 'slug' => $this->slug]);
+        }
         parent::afterFind();
     }
 

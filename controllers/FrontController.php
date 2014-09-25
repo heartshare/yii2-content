@@ -57,7 +57,7 @@ class FrontController extends Controller
 
     public function actionNewslist()
     {
-        $this->layout = '@app/views/layouts/' . \Yii::$app->params['newsLayout'];
+        $this->layout = '@frontend/views/layouts/' . \Yii::$app->params['newsLayout'];
         $news = new NewsSearch();
         $cd = new DbDependency();
         $cd->sql = 'SELECT MAX(updated) FROM ' . News::tableName();
@@ -79,7 +79,7 @@ class FrontController extends Controller
     }
     public function actionNovosti()
     {
-        $this->layout = '@app/views/layouts/' . \Yii::$app->params['newsLayout'];
+        $this->layout = '@frontend/views/layouts/' . \Yii::$app->params['newsLayout'];
         $news = new ShortsSearch();
         $cd = new DbDependency();
         $cd->sql = 'SELECT MAX(updated) FROM ' . Shorts::tableName();
@@ -102,7 +102,7 @@ class FrontController extends Controller
 
     public function actionNews($slug)
     {
-        $this->layout = '@app/views/layouts/' . \Yii::$app->params['newsLayout'];
+        $this->layout = '@frontend/views/layouts/' . \Yii::$app->params['newsLayout'];
         $news = News::find()->where(
             'slug=:s AND active=:a AND publishto<=:d',
             [':s' => $slug, ':a' => 1, ':d' => date('Y-m-d H:i', time())]
@@ -117,7 +117,7 @@ class FrontController extends Controller
 
     public function actionArticle($slug)
     {
-        $this->layout = '@app/views/layouts/' . \Yii::$app->params['artLayout'];
+        $this->layout = '@frontend/views/layouts/' . \Yii::$app->params['artLayout'];
         $article = Article::find()->where(
             'slug=:s AND active=:a AND publishto<=:d',
             [':s' => $slug, ':a' => 1, ':d' => date('Y-m-d H:i', time())]
@@ -130,7 +130,7 @@ class FrontController extends Controller
     }
 
     public function actionArticlesBydate($date){
-        $this->layout = '@app/views/layouts/' . \Yii::$app->params['artLayout'];
+        $this->layout = '@frontend/views/layouts/' . \Yii::$app->params['artLayout'];
         $arts = new ArticleSearch();
         $arts->scenario='datasearch';
         $arts->publishto=$date;
@@ -158,7 +158,7 @@ class FrontController extends Controller
         );
     }
     public function actionNewsBydate($date){
-        $this->layout = '@app/views/layouts/' . \Yii::$app->params['newsLayout'];
+        $this->layout = '@frontend/views/layouts/' . \Yii::$app->params['newsLayout'];
         $news = new NewsSearch();
         $news->publishto=$date;
         $cd = new DbDependency();
@@ -183,7 +183,7 @@ class FrontController extends Controller
 
     public function actionPage($slug)
     {
-        $this->layout = '@app/views/layouts/' . \Yii::$app->params['pageLayout'];
+        $this->layout = '@frontend/views/layouts/' . \Yii::$app->params['pageLayout'];
         $page = Page::findOne(['slug' => $slug]);
         if (!$page) {
             throw new HttpException(404, 'Запрошенная cтраница не существует');
@@ -195,7 +195,7 @@ class FrontController extends Controller
 
     public function actionCategory($slug)
     {
-        $this->layout = '@app/views/layouts/' . \Yii::$app->params['artLayout'];
+        $this->layout = '@frontend/views/layouts/' . \Yii::$app->params['artLayout'];
         $arts = new ArticleSearch();
         $cat = Category::findOne(['slug' => $slug]);
         if (!$cat) {
@@ -227,7 +227,7 @@ class FrontController extends Controller
 
     public function actionShowtag($name)
     {
-        $this->layout = '@app/views/layouts/' . \Yii::$app->params['siteLayout'];
+        $this->layout = '@frontend/views/layouts/' . \Yii::$app->params['siteLayout'];
         $tag = Tags::findTag($name);
         $newsmodel = new NewsSearch();
         $artmodel = new ArticleSearch();
@@ -272,7 +272,7 @@ class FrontController extends Controller
 
     public function actionSearch()
     {
-        $this->layout = '@app/views/layouts/' . \Yii::$app->params['siteLayout'];
+        $this->layout = '@frontend/views/layouts/' . \Yii::$app->params['siteLayout'];
         $query = \Yii::$app->request->post('query', null);
         $type = \Yii::$app->request->post('type', 'content');
         $query_strip = strip_tags($query);
@@ -346,7 +346,7 @@ class FrontController extends Controller
 
     public function actionFeedback()
     {
-        $this->layout = '@app/views/layouts/' . \Yii::$app->params['pageLayout'];
+        $this->layout = '@frontend/views/layouts/' . \Yii::$app->params['pageLayout'];
         $model = new Feedback();
         $model->scenario = 'create';
         if (\Yii::$app->request->isAjax && $model->load(\Yii::$app->request->post())) {
