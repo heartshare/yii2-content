@@ -32,15 +32,8 @@ class m140925_205959_content extends Migration
                 'PRIMARY KEY (`id`)'
             ], $tableOptions
         );
-        $this->addForeignKey(
-            'fk_category_article', '{{%vg_article}}', 'cat_id', '{{%vg_category}}', 'id', 'CASCADE', 'DELETE'
-        );
 
-        $this->addForeignKey(
-            'fk_covers_article', '{{%vg_article}}', 'cover_id', '{{%vg_covers}}', 'id', 'CASCADE', 'DELETE'
-        );
 
-        $tableOptions = "";
 
         /* MYSQL */
         $this->createTable(
@@ -70,7 +63,6 @@ class m140925_205959_content extends Migration
                 'PRIMARY KEY (`id`)'
             ], $tableOptions
         );
-        $tableOptions = "";
 
         /* MYSQL */
         $this->createTable(
@@ -133,8 +125,6 @@ class m140925_205959_content extends Migration
             ], $tableOptions
         );
 
-        $this->addForeignKey('fk_covers_news', '{{%vg_news}}', 'cover_id', '{{%vg_covers}}', 'id', 'CASCADE', 'DELETE');
-
 
         /* MYSQL */
         $this->createTable(
@@ -178,10 +168,6 @@ class m140925_205959_content extends Migration
                 'PRIMARY KEY (`tid`)'
             ], $tableOptions
         );
-        $this->addForeignKey(
-            'fk_tags_tagged', '{{%vg_tagged}}', 'tagid', '{{%vg_tags}}', 'tag_id', 'CASCADE', 'DELETE'
-        );
-
 
         /* MYSQL */
         $this->createTable(
@@ -192,6 +178,21 @@ class m140925_205959_content extends Migration
                 'updated' => 'TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ',
                 'PRIMARY KEY (`tag_id`)'
             ], $tableOptions
+        );
+
+        $this->addForeignKey('fk_covers_news', '{{%news}}', 'cover_id', '{{%covers}}', 'id', 'CASCADE', 'DELETE');
+
+
+        $this->addForeignKey(
+            'fk_tags_tagged', '{{%tagged}}', 'tagid', '{{%tags}}', 'tag_id', 'CASCADE', 'DELETE'
+        );
+
+        $this->addForeignKey(
+            'fk_category_article', '{{%article}}', 'cat_id', '{{%category}}', 'id', 'CASCADE', 'DELETE'
+        );
+
+        $this->addForeignKey(
+            'fk_covers_article', '{{%article}}', 'cover_id', '{{%covers}}', 'id', 'CASCADE', 'DELETE'
         );
     }
 
