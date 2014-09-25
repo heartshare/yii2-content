@@ -197,8 +197,16 @@ class m140925_205959_content extends Migration
 
     public function safeDown()
     {
-        $this->dropTable('{{%widgetman}}');
-
+        $this->dropTable('{{%tags}}');
+        $this->dropTable('{{%smallnews}}');
+        $this->dropTable('{{%page}}');
+        $this->dropTable('{{%news}}');
+        $this->dropTable('{{%meta}}');
+        $this->dropTable('{{%feedback}}');
+        $this->dropTable('{{%article}}');
+        $this->dropTable('{{%attachments}}');
+        $this->dropTable('{{%covers}}');
+        $this->dropTable('{{%category}}');
         return false;
     }
 }
