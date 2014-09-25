@@ -184,7 +184,7 @@ class m140925_205959_content extends Migration
             ], $tableOptions
         );
         $this->createIndex('tagid', '{{%tagged}}', 'tagid');
-        $this->createIndex('contid', '{{%contid}}', 'contid');
+        $this->createIndex('contid', '{{%tagged}}', 'contid');
         $this->createIndex('tag_typr', '{{%tagged}}', ['conttype']);
 
         /* MYSQL */
