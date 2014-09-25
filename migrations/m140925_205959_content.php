@@ -198,19 +198,19 @@ class m140925_205959_content extends Migration
             ], $tableOptions
         );
 
-        $this->addForeignKey('fk_covers_news', '{{%news}}', 'cover_id', '{{%covers}}', 'id', 'CASCADE', 'DELETE');
+        $this->addForeignKey('fk_covers_news', '{{%news}}', 'cover_id', '{{%covers}}', 'id', 'CASCADE', 'CASCADE');
 
 
         $this->addForeignKey(
-            'fk_tags_tagged', '{{%tagged}}', 'tagid', '{{%tags}}', 'tag_id', 'CASCADE', 'DELETE'
+            'fk_tags_tagged', '{{%tagged}}', 'tagid', '{{%tags}}', 'tag_id', 'CASCADE', 'CASCADE'
         );
 
         $this->addForeignKey(
-            'fk_category_article', '{{%article}}', 'cat_id', '{{%category}}', 'id', 'CASCADE', 'DELETE'
+            'fk_category_article', '{{%article}}', 'cat_id', '{{%category}}', 'id', 'CASCADE', 'CASCADE'
         );
 
         $this->addForeignKey(
-            'fk_covers_article', '{{%article}}', 'cover_id', '{{%covers}}', 'id', 'CASCADE', 'DELETE'
+            'fk_covers_article', '{{%article}}', 'cover_id', '{{%covers}}', 'id', 'CASCADE', 'CASCADE'
         );
     }
 
