@@ -44,7 +44,7 @@ class InstallController extends Controller
         $basepath = $cont->mainuploadpath;
         echo $basepath;
         FileHelper::createDirectory($basepath);
-
+        FileHelper::createDirectory($basepath.'/files/');
         FileHelper::createDirectory(FileHelper::normalizePath($basepath . '/covers/prepared/'));
         \Yii::$app->session->setFlash('info2', $basepath . '/covers/prepared/');
         FileHelper::createDirectory(FileHelper::normalizePath($basepath . '/covers/mid/'));
