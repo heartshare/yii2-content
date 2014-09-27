@@ -170,6 +170,7 @@ class Covers extends SActiveRecord
 
     public function removeUnusable()
     {
+
         $covers = self::find()->all();
         foreach ($covers as $cover) {
             /**@var Covers $cover**/
@@ -184,21 +185,27 @@ class Covers extends SActiveRecord
 
     public function rebuildThumb()
     {
+
         /**@var \insolita\content\modules\cover\CoverModule $module**/
         $module = Yii::$app->getModule('content')->getModule('cover');
-        @unlink($module->cover_path . $this->filename);
-        @unlink($module->cover_midpath . $this->filename);
+        if(file_exists($module->cover_origpath . $this->filename)){
+            @unlink($module->cover_path . $this->filename);
+            @unlink($module->cover_midpath . $this->filename);
 
-         Image::thumbnail(
-            $module->cover_origpath . $this->filename,
-            $module->cover_wsize,
-            $module->cover_hsize
-        )
-            ->save($module->cover_path . $this->filename);
-        Yii::$app->image->load($module->cover_origpath . $this->filename)
-            ->resize($module->cover_midsize, $module->cover_midsize, Yii\image\drivers\Image::AUTO)
-            ->save($module->cover_midpath . $this->filename);
-        Helper::logs('rebuilded ' . $module->cover_path . $this->filename);
+            Image::thumbnail(
+                $module->cover_origpath . $this->filename,
+                $module->cover_wsize,
+                $module->cover_hsize
+            )
+                ->save($module->cover_path . $this->filename);
+            Yii::$app->image->load($module->cover_origpath . $this->filename)
+                ->resize($module->cover_midsize, $module->cover_midsize, Yii\image\drivers\Image::AUTO)
+                ->save($module->cover_midpath . $this->filename);
+            Helper::logs('rebuilded ' . $module->cover_path . $this->filename);
+        }else{
+            Helper::logs('NOT FOUND! ' . $module->cover_path . $this->filename);
+        }
+
     }
 
 }

@@ -190,21 +190,26 @@ class Attach extends ActiveRecord
                     $uploader->mid_path . $this->filename
                 ]
             );
-            @unlink($uploader->thumb_path . $this->filename);
-            @unlink($uploader->mid_path . $this->filename);
-            @unlink($uploader->big_path . $this->filename);
-            Yii::$app->image->load($uploader->orig_path . $this->filename)
-                ->resize($uploader->thumb_size, $uploader->thumb_size, Yii\image\drivers\Image::AUTO)
-                ->save($uploader->thumb_path . $this->filename);
+            if(file_exists($uploader->orig_path . $this->filename)){
+                @unlink($uploader->thumb_path . $this->filename);
+                @unlink($uploader->mid_path . $this->filename);
+                @unlink($uploader->big_path . $this->filename);
+                Yii::$app->image->load($uploader->orig_path . $this->filename)
+                    ->resize($uploader->thumb_size, $uploader->thumb_size, Yii\image\drivers\Image::AUTO)
+                    ->save($uploader->thumb_path . $this->filename);
 
-            Yii::$app->image->load($uploader->orig_path . $this->filename)
-                ->resize($uploader->mid_size, $uploader->mid_size, Yii\image\drivers\Image::AUTO)
-                ->save($uploader->mid_path . $this->filename);
+                Yii::$app->image->load($uploader->orig_path . $this->filename)
+                    ->resize($uploader->mid_size, $uploader->mid_size, Yii\image\drivers\Image::AUTO)
+                    ->save($uploader->mid_path . $this->filename);
 
-            Yii::$app->image->load($uploader->orig_path . $this->filename)
-                ->resize($uploader->big_size, $uploader->big_size, Yii\image\drivers\Image::AUTO)
-                ->save($uploader->big_path . $this->filename);
-            Helper::logs('rebuilded ' . $uploader->thumb_path . $this->filename);
+                Yii::$app->image->load($uploader->orig_path . $this->filename)
+                    ->resize($uploader->big_size, $uploader->big_size, Yii\image\drivers\Image::AUTO)
+                    ->save($uploader->big_path . $this->filename);
+                Helper::logs('rebuilded ' . $uploader->thumb_path . $this->filename);
+            }else{
+                Helper::logs('Not extst file  ' . $uploader->orig_path . $this->filename);
+            }
+
         }
     }
 }
