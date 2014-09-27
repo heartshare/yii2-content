@@ -69,7 +69,8 @@ $form->field($model, 'text')->widget(
                     'convertDivs' => false,
                     'convertVideoLinks' => true,
                     'pastePlainText' => true,
-                    'deniedTags' => ['html', 'head', 'link', 'body', 'meta', 'script', 'footer', 'applet']
+                    'deniedTags' => ['html', 'head', 'link', 'body', 'meta', 'script', 'footer', 'applet'],
+                    'plugins'=>['fontcolor']
                 ]
             )
     ]
