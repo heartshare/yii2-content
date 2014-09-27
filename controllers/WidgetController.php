@@ -234,7 +234,8 @@ class WidgetController extends Controller
             ['range' => array_keys(IWidget::$types)]
         );
         $model->addRule(['title', 'icon'], 'string', ['max' => 200]);
-        $model->addRule(['text'], 'string', ['min' => 3, 'max' => 10000]);
+        $model->addRule(['text'], 'string', [ 'max' => 10000]);
+        $model->addRule(['text'], 'default', ['value' => '']);
         $model->addRule(['positions'], 'in', ['range' => array_keys($positions)]);
         $model->addRule(['ord'], 'integer');
         $model->addRule(['ord'], 'default', ['value' => 10]);
