@@ -49,6 +49,13 @@ echo $form->errorSummary([$model, $wmodel]);
 ?>
 <?= $form->field($model, 'title')->textInput([])->label('Заголовок')->hint('Не обязательно'); ?>
 <?=
+$form->field($model, 'icon')->widget(
+    '\insolita\iconpicker\Iconpicker',
+    [
+        'removePrefix' => true
+    ]
+)->label('Иконка')->hint('Не обязательно'); ?>
+<?=
 $form->field($model, 'text')->widget(
     \vova07\imperavi\Widget::className(),
     [
@@ -68,10 +75,9 @@ $form->field($model, 'text')->widget(
     ]
 )->label('Содержимое');?>
 
-<?=
-$form->field($model, 'mode')->dropDownList(
-    [TextWidget::MODE_FLAT => 'Без обрамления', TextWidget::MODE_BOX => 'Блок', TextWidget::MODE_PANEL => 'Панель']
-)->label('Обрамление виджета'); ?>
+<?=$form->field($model, 'mode')->dropDownList(\insolita\widgetman\IWidget::$modes)->label('Обрамление виджета'); ?>
+<?=$form->field($model, 'type')->dropDownList(\insolita\widgetman\IWidget::$types)->label('Стиль виджета'); ?>
+
 <?= $form->field($model, 'positions')->dropDownList($positions)->label('Расположение'); ?>
 <?= $form->field($model, 'ord')->textInput([])->label('Порядковый номер'); ?>
 

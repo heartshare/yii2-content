@@ -9,26 +9,11 @@
 namespace insolita\content\widgets;
 
 
+use insolita\widgetman\IWidget;
 use insolita\widgetman\WidgetizerInterface;
-use yii\bootstrap\Widget;
-use yii\helpers\Url;
 
-class TextWidget extends Widget implements WidgetizerInterface
+class TextWidget extends IWidget implements WidgetizerInterface
 {
-
-    const MODE_BOX = 'box';
-    const MODE_PANEL = 'panel';
-    const MODE_FLAT = 'flat';
-
-    public $title = '';
-
-    public $icon = '';
-
-    public $text = '';
-
-    public $type = 'default';
-
-    public $mode = self::MODE_PANEL;
 
 
     public function init()
@@ -38,13 +23,7 @@ class TextWidget extends Widget implements WidgetizerInterface
 
     public function run()
     {
-        if ($this->mode == self::MODE_BOX) {
-            return $this->renderBox();
-        } elseif ($this->mode == self::MODE_PANEL) {
-            return $this->renderPanel();
-        } else {
-            return $this->renderFlat();
-        }
+       return parent::run();
     }
 
     public function renderBox()

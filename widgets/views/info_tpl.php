@@ -12,12 +12,16 @@
  */
 ?>
 
-<?php if($icon || $title):?>
+<div class="bs-callout bs-callout-<?=$type?>">
         <h4>
             <?php if($icon):?>
                 <i class="fa fa-<?=$icon?> fa-lg"></i>
             <?php endif;?>
             <?=$title?>
         </h4>
-<?php endif;?>
-<?=$content;?>
+    <p><?php if($icon):?>
+            <i class="fa fa-<?=$icon?> fa-2x pull-left"></i>
+        <?php endif;?><?=$content;?>
+    </p>
+    <div class="clearfix"></div>
+</div>

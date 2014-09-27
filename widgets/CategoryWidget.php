@@ -49,6 +49,7 @@ class CategoryWidget extends Widget implements WidgetizerInterface
         }
         return SideNav::widget(
             [
+                'type'=>$this->type,
                 'heading' => $this->title,
                 'encodeLabels' => false,
                 'items' => $items

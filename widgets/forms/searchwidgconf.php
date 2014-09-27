@@ -63,14 +63,8 @@ $form->field($model, 'icon')->widget(
         'removePrefix' => true
     ]
 )->label('Иконка')->hint('Не обязательно'); ?>
-<?=
-$form->field($model, 'mode')->dropDownList(
-    [
-        \insolita\content\widgets\TextWidget::MODE_FLAT => 'Без обрамления',
-        \insolita\content\widgets\TextWidget::MODE_BOX => 'Блок',
-        \insolita\content\widgets\TextWidget::MODE_PANEL => 'Панель'
-    ]
-)->label('Обрамление виджета'); ?>
+<?=$form->field($model, 'mode')->dropDownList(\insolita\widgetman\IWidget::$modes)->label('Обрамление виджета'); ?>
+<?=$form->field($model, 'type')->dropDownList(\insolita\widgetman\IWidget::$types)->label('Стиль виджета'); ?>
 <?= $form->field($model, 'positions')->dropDownList($positions)->label('Расположение'); ?>
 <?= $form->field($model, 'ord')->textInput([])->label('Порядковый номер'); ?>
 

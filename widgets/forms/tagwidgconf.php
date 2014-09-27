@@ -70,10 +70,8 @@ $form->field($model, 'viewtype')->dropDownList(
         \insolita\content\widgets\TagWidget::VIEW_LIST => 'Списком по 1 тегу'
     ]
 )->label('Отображение тегов'); ?>
-<?=
-$form->field($model, 'mode')->dropDownList(
-    [TextWidget::MODE_FLAT => 'Без обрамления', TextWidget::MODE_BOX => 'Блок', TextWidget::MODE_PANEL => 'Панель']
-)->label('Обрамление виджета'); ?>
+<?=$form->field($model, 'mode')->dropDownList(\insolita\widgetman\IWidget::$modes)->label('Обрамление виджета'); ?>
+<?=$form->field($model, 'type')->dropDownList(\insolita\widgetman\IWidget::$types)->label('Стиль виджета'); ?>
 <?= $form->field($model, 'positions')->dropDownList($positions)->label('Расположение'); ?>
 <?= $form->field($model, 'ord')->textInput([])->label('Порядковый номер'); ?>
 

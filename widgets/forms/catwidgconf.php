@@ -55,6 +55,7 @@ $form->field($model, 'icon')->widget(
     ]
 )->label('Иконка')->hint('Не обязательно'); ?>
 
+<?=$form->field($model, 'type')->dropDownList(\insolita\widgetman\IWidget::$types)->label('Стиль виджета'); ?>
 <?= $form->field($model, 'showcount')->dropDownList([0 => 'Нет', 1 => 'Да'])->label('Показывать ко-во статей'); ?>
 <?= $form->field($model, 'showempty')->dropDownList([0 => 'Нет', 1 => 'Да'])->label('Показывать пустые категории'); ?>
 <?= $form->field($model, 'positions')->dropDownList($positions)->label('Расположение'); ?>
