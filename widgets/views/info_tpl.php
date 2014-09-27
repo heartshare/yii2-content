@@ -21,7 +21,7 @@
     <?php if($content):?>
         <div class="row">
             <div class="col-sm-1 col-md-1"><?php if($icon):?>
-                    <i class="fa fa-<?=$icon?> fa-2x pull-left"></i>
+                    <i class="fa fa-<?=$icon?> fa-2x"></i>
                 <?php endif;?> </div>
             <div class="col-sm-1 col-md-1">
        <?=$content;?>
