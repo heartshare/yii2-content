@@ -20,6 +20,6 @@
             <?php endif;?>
             <?=$title?></h3>
     </div>
-    <div class="box-body"><?=$content;?>
+    <div class="panel-body"><?=$content;?>
     </div>
 </div>
