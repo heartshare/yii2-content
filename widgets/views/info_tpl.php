@@ -14,14 +14,14 @@
 
 <div class="bs-callout bs-callout-<?=$type?>">
 
-            <?php if($title):?>
-    <h4>  <?=$title?></h4>
+            <?php if($title||$icon):?>
+    <h4><?php if($icon):?>
+            <i class="fa fa-<?=$icon?> fa-2x pull-left"></i>
+        <?php endif;?>  <?=$title?></h4>
             <?php endif;?>
 
 
-    <p><?php if($icon):?>
-            <i class="fa fa-<?=$icon?> fa-2x pull-left"></i>
-        <?php endif;?><?=$content;?>
+    <p><?=$content;?>
     </p>
     <div class="clearfix"></div>
 </div>
