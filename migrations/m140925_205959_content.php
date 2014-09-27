@@ -166,6 +166,7 @@ class m140925_205959_content extends Migration
                 'active' => 'TINYINT(1) NOT NULL',
                 'created' => 'DATETIME NOT NULL',
                 'updated' => 'TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ',
+                'publishto' => 'DATETIME NOT NULL',
                 'bymanager' => 'INT(11) NOT NULL',
                 'PRIMARY KEY (`id`)'
             ], $tableOptions

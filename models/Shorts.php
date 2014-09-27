@@ -19,7 +19,7 @@ use \insolita\things\components\SActiveRecord;
 class Shorts extends SActiveRecord
 {
     public static $titledAttribute = 'name';
-    public  $gridDefaults = ['id', 'name', 'text', 'active', 'created', 'updated'];
+    public  $gridDefaults = ['id', 'name', 'text', 'active', 'created','publishto', 'updated'];
     public  $ignoredAttributes = ['bymanager'];
 
     /**
@@ -47,19 +47,22 @@ class Shorts extends SActiveRecord
     public function rules()
     {
         return [
-            [['name', 'text'], 'required'],
+            [['text'], 'required'],
+            ['name','default','value'=>'...'],
             [['id', 'active'], 'integer'],
             [['text'], 'string'],
             [['created', 'updated'], 'safe'],
             [['name'], 'string', 'max' => 255],
+            ['publishto', 'default', 'value' => date('Y-m-d H:i:s', time())]
+
         ];
     }
 
     public function scenarios()
     {
         return [
-            'create' => ['id', 'name', 'text', 'active', 'created', 'updated'],
-            'update' => ['id', 'name', 'text', 'active', 'created', 'updated'],
+            'create' => ['id', 'name', 'text', 'active', 'created', 'updated','publishto'],
+            'update' => ['id', 'name', 'text', 'active', 'created', 'updated','publishto'],
             'toggle' => ['active'],
             'delete' => []
         ];
@@ -77,7 +80,8 @@ class Shorts extends SActiveRecord
             'active' => 'Опубликовано?',
             'created' => 'Создано',
             'updated' => 'Обновлено',
-            'bymanager' => 'Автор'
+            'bymanager' => 'Автор',
+            'publishto'=>'Дата публикации'
         ];
     }
 

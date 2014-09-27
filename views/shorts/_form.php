@@ -63,8 +63,8 @@ use kartik\datecontrol\DateControl;
             ]
         );
 
-    echo $form->errorSummary([$model]);
-    ?>
+     ?>
+    <?=$form->errorSummary($model);?>
     <div id="resp_success" style="display: none" class="alert alert-success"></div>
     <div id="resp_error" class="alert alert-danger" style="display: none"></div>
     <?php     echo Form::widget(
@@ -81,6 +81,7 @@ use kartik\datecontrol\DateControl;
             ]
         ]
     );?>
+
     <?php echo $form->field($model, 'text')->widget(
         \vova07\imperavi\Widget::className(),
         [

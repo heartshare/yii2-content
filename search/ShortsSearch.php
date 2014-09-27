@@ -35,7 +35,7 @@ class ShortsSearch extends Shorts
     }
 
     public function frontsearch($params){
-        $query = Shorts::find()->active()->orderBy(['created'=>SORT_DESC]);
+        $query = Shorts::find()->published()->orderBy(['created'=>SORT_DESC]);
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,

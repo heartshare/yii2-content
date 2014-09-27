@@ -48,7 +48,7 @@ class ShortsWidget extends TextWidget
 
     public function getLatest()
     {
-        $latest = ShortsSearch::find()->active()->orderBy(['created' => SORT_DESC])->limit($this->total)
+        $latest = ShortsSearch::find()->published()->orderBy(['created' => SORT_DESC])->limit($this->total)
             ->all();
         return $this->renderList($latest);
     }
