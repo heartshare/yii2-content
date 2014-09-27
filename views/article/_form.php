@@ -123,6 +123,7 @@ use kartik\datecontrol\DateControl;
                 )
         ]
     )?>
+    <?php if(Yii::$app->params['use_tags']):?>
     <?php
     $alltags = array_values(\insolita\content\models\Tags::getList());
     $alltags = count($alltags) ? $alltags : ["" => ""];
@@ -139,6 +140,7 @@ use kartik\datecontrol\DateControl;
             ],
         ]
     );?>
+    <?php endif;?>
     <?php
     $model->loadDefaultValues();
     echo $form->field($model, 'active')->checkbox([])?>

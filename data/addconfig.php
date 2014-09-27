@@ -22,7 +22,7 @@ return [
         'param' => 'uploadpath',
         'name' => 'Путь для сохранения изображений',
         'descr' => '',
-        'value' => '@frontend/web/uploads',
+        'value' => '@frontweb/public/uploads',
         'type' => 'string',
         'section' => 'Контент'
     ],
@@ -38,6 +38,14 @@ return [
         'param' => 'use_artcover',
         'name' => 'Использовать обложки для статей',
         'descr' => 'Изображения-обложки будут аккуратно отображаться в виджетах и автоматом позиционроваться в начале статьи',
+        'value' => '1',
+        'type' => 'bool',
+        'section' => 'Контент'
+    ],
+    'use_tags' => [
+        'param' => 'use_tags',
+        'name' => 'Использовать метки для новостей и статей',
+        'descr' => 'Использовать метки для новостей и статей',
         'value' => '1',
         'type' => 'bool',
         'section' => 'Контент'

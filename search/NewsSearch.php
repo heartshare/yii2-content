@@ -118,11 +118,18 @@ class NewsSearch extends News
 
     public function frontsearch($params)
     {
+
         $query = self::find()
             ->where('{{%news}}.active=:a', [':a' => 1])
             ->andWhere(new Expression('{{%news}}.publishto<=NOW()'))
-            ->with(['tags', 'cover'])
             ->orderBy(['{{%news}}.publishto' => SORT_DESC]);
+
+        if(Yii::$app->params['use_tags']){
+            $query->joinWith('tags');
+        }
+        if(Yii::$app->params['use_newscover']){
+            $query->joinWith('cover');
+        }
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,

@@ -36,6 +36,7 @@
                         ),
                         ['class' => 'pull-right']
                     ) ?>
+            <?php if(Yii::$app->params['use_tags']):?>
                     Метки:   <?php
                     if ($model->tags) {
                         //$tags=explode(',',$model->taglist);
@@ -48,6 +49,7 @@
                         }
                     }
                     ?>
+                <?php endif;?>
                 </div>
             </div>
 

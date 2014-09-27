@@ -120,6 +120,14 @@ class ArticleSearch extends Article
             ->andWhere(['cat_id' => $cat])
             ->with(['tags', 'cover'])
             ->orderBy(['publishto' => SORT_DESC]);
+        if(Yii::$app->params['use_tags']){
+            $query->joinWith('tags');
+        }
+        if(Yii::$app->params['use_artcover']){
+            $query->joinWith('cover');
+        }
+
+
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'pagination' => [

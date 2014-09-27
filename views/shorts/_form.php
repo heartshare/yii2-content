@@ -76,6 +76,12 @@ use kartik\datecontrol\DateControl;
                 'name' => [
                     'type' => Form::INPUT_TEXT,
                     'options' => ['placeholder' => ' Название...', 'maxlength' => 255]
+                ],'publishto' => [
+                    'type' => Form::INPUT_WIDGET,
+                    'widgetClass' => DateControl::classname(),
+                    'hint' => 'Можно указать дату публикации задним числом, или отложить выставив будущую дату.
+Оставьте пустой для установки текущей даты автоматом',
+                    'options' => ['type' => DateControl::FORMAT_DATE]
                 ],
 
             ]

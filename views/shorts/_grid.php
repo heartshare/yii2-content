@@ -28,6 +28,11 @@ echo GridView::widget(
                 'class' => \dosamigos\grid\ToggleColumn::className(),
                 'afterToggle' => 'function(r, data){if(r){jQuery.pjax.reload("#gridpjax")};}'
             ],
+            [
+                'attribute' => 'publishto',
+                'format' => 'datetime',
+                'label' => \insolita\things\helpers\Helper::Fa('clock-o', 2) . 'публикации'
+            ],
             ['attribute' => 'updated', 'format' => 'datetime', 'label' => \insolita\things\helpers\Helper::Fa('clock-o', 2)],
             [
                 'class' => 'kartik\grid\ActionColumn',
