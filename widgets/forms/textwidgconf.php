@@ -58,6 +58,7 @@ $form->field($model, 'text')->widget(
                 Yii::$app->getModule('content')->getModule('uploader')->getRedactorSettings(),
                 [
                     'lang' => 'ru',
+                    'replaceDivs'=>false,
                     'convertDivs' => false,
                     'convertVideoLinks' => true,
                     'pastePlainText' => true,

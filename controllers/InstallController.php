@@ -42,6 +42,7 @@ class InstallController extends Controller
          */
         $cont = \Yii::$app->getModule('content');
         $basepath = $cont->mainuploadpath;
+        echo $basepath;
         FileHelper::createDirectory($basepath);
 
         FileHelper::createDirectory(FileHelper::normalizePath($basepath . '/covers/prepared/'));
@@ -58,6 +59,6 @@ class InstallController extends Controller
         \Yii::$app->session->setFlash('info6', $basepath . '/content/big/');
         FileHelper::createDirectory(FileHelper::normalizePath($basepath . '/content/mid/'));
         \Yii::$app->session->setFlash('info1', $basepath . '/content/mid/');
-        return $this->redirect(['/config/index']);
+       // return $this->redirect(['/config/index']);
     }
 }
