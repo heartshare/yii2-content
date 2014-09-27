@@ -14,15 +14,18 @@
 
 <div class="bs-callout bs-callout-<?=$type?>">
 
-            <?php if($title||$icon):?>
-    <h3><?php if($icon):?>
-            <i class="fa fa-<?=$icon?> fa-2x pull-left"></i>
-        <?php endif;?>  <?=$title?></h3>
+            <?php if($title):?>
+    <h4 class="text-<?=type?>"> <?=$title?></h4>
             <?php endif;?>
 
     <?php if($content):?>
+        <div class="row">
+            <div class="col-sm-1 col-md-1"><?php if($icon):?>
+                    <i class="fa fa-<?=$icon?> fa-2x pull-left"></i>
+                <?php endif;?> </div>
+            <div class="col-sm-1 col-md-1">
        <?=$content;?>
+        </div></div>
     <?php endif;?>
 
-    <div class="clearfix"></div>
 </div>
