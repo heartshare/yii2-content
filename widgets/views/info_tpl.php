@@ -19,13 +19,9 @@
             <?php endif;?>
 
     <?php if($content):?>
-        <div class="row">
-            <div class="col-sm-1 col-md-1"><?php if($icon):?>
-                    <i class="fa fa-<?=$icon?> fa-2x"></i>
-                <?php endif;?> </div>
-            <div class="col-sm-11 col-md-11">
-       <?=$content;?>
-        </div></div>
+               <?php if($icon):?>
+                    <i class="fa fa-<?=$icon?> fa-lg pull-left"></i>
+                <?php endif;?>  <?=$content;?>
     <?php endif;?>
 
 </div>
