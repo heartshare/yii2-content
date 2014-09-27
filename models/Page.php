@@ -2,13 +2,11 @@
 
 namespace insolita\content\models;
 
+use insolita\content\modules\uploader\models\Attach;
 use insolita\things\behaviors\MetaModelBeh;
 use insolita\things\behaviors\SlugModelBeh;
-use insolita\menu\models\Menu;
-use insolita\uploader\models\Attach;
 use Yii;
 use yii\helpers\Json;
-use yii\helpers\Url;
 use insolita\things\components\SActiveRecord;
 
 
