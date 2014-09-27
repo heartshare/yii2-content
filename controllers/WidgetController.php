@@ -100,12 +100,12 @@ class WidgetController extends Controller
         $model->addRule(
             ['mode'],
             'in',
-            ['range' => IWidget::$modes]
+            ['range' => array_keys(IWidget::$modes)]
         );
         $model->addRule(
             ['type'],
             'in',
-            ['range' => IWidget::$types]
+            ['range' => array_keys(IWidget::$types)]
         );
         $model->addRule(['positions'], 'in', ['range' => array_keys($positions)]);
         $model->addRule(['ord'], 'integer');
@@ -161,12 +161,12 @@ class WidgetController extends Controller
         $model->addRule(
             ['mode'],
             'in',
-            ['range' => IWidget::$modes]
+            ['range' => array_keys(IWidget::$modes)]
         );
         $model->addRule(
             ['type'],
             'in',
-            ['range' => IWidget::$types]
+            ['range' => array_keys(IWidget::$types)]
         );
         $model->addRule(['orient'], 'in', ['range' => [ArticleWidget::ORIENT_HOR, ArticleWidget::ORIENT_VER]]);
         $model->addRule(
@@ -226,12 +226,12 @@ class WidgetController extends Controller
         $model->addRule(
             ['mode'],
             'in',
-            ['range' => IWidget::$modes]
+            ['range' => array_keys(IWidget::$modes)]
         );
         $model->addRule(
             ['type'],
             'in',
-            ['range' => IWidget::$types]
+            ['range' => array_keys(IWidget::$types)]
         );
         $model->addRule(['title', 'icon'], 'string', ['max' => 200]);
         $model->addRule(['text'], 'string', ['min' => 3, 'max' => 10000]);
@@ -288,12 +288,12 @@ class WidgetController extends Controller
         $model->addRule(
             ['mode'],
             'in',
-            ['range' => IWidget::$modes]
+            ['range' => array_keys(IWidget::$modes)]
         );
         $model->addRule(
             ['type'],
             'in',
-            ['range' => IWidget::$types]
+            ['range' => array_keys(IWidget::$types)]
         );
         $model->addRule(['orient'], 'in', ['range' => [NewsWidget::ORIENT_HOR, NewsWidget::ORIENT_VER]]);
         $model->addRule(
@@ -353,12 +353,12 @@ class WidgetController extends Controller
         $model->addRule(
             ['mode'],
             'in',
-            ['range' => IWidget::$modes]
+            ['range' => array_keys(IWidget::$modes)]
         );
         $model->addRule(
             ['type'],
             'in',
-            ['range' => IWidget::$types]
+            ['range' => array_keys(IWidget::$types)]
         );
         $model->addRule(['depth'], 'in', ['range' => [ArchiveWidget::DEPTH_DAYS, ArchiveWidget::DEPTH_MONTH]]);
         $model->addRule(
@@ -417,12 +417,12 @@ class WidgetController extends Controller
         $model->addRule(
             ['mode'],
             'in',
-            ['range' => IWidget::$modes]
+            ['range' => array_keys(IWidget::$modes)]
         );
         $model->addRule(
             ['type'],
             'in',
-            ['range' => IWidget::$types]
+            ['range' => array_keys(IWidget::$types)]
         );
         $model->addRule(['orient'], 'in', ['range' => [NewsWidget::ORIENT_HOR, NewsWidget::ORIENT_VER]]);
 
@@ -480,12 +480,12 @@ class WidgetController extends Controller
         $model->addRule(
             ['mode'],
             'in',
-            ['range' => IWidget::$modes]
+            ['range' => array_keys(IWidget::$modes)]
         );
         $model->addRule(
             ['type'],
             'in',
-            ['range' => IWidget::$types]
+            ['range' => array_keys(IWidget::$types)]
         );
         $model->addRule(['orient'], 'in', ['range' => [FotoWidget::ORIENT_HOR, FotoWidget::ORIENT_VER]]);
         $model->addRule(
@@ -546,12 +546,12 @@ class WidgetController extends Controller
         $model->addRule(
             ['mode'],
             'in',
-            ['range' => IWidget::$modes]
+            ['range' => array_keys(IWidget::$modes)]
         );
         $model->addRule(
             ['type'],
             'in',
-            ['range' => IWidget::$types]
+            ['range' => array_keys(IWidget::$types)]
         );
         $model->addRule(['orient'], 'in', ['range' => [FotoWidget::ORIENT_HOR, FotoWidget::ORIENT_VER]]);
         $model->addRule(
@@ -653,7 +653,7 @@ class WidgetController extends Controller
         $model->addRule(
             ['type'],
             'in',
-            ['range' => IWidget::$types]
+            ['range' => array_keys(IWidget::$types)]
         );
         $model->addRule(['showcount', 'showempty'], 'in', ['range' => [0, 1]]);
         $model->addRule(['title', 'icon'], 'string', ['max' => 200]);
@@ -769,12 +769,12 @@ class WidgetController extends Controller
         $model->addRule(
             ['mode'],
             'in',
-            ['range' => IWidget::$modes]
+            ['range' => array_keys(IWidget::$modes)]
         );
         $model->addRule(
             ['type'],
             'in',
-            ['range' => IWidget::$types]
+            ['range' => array_keys(IWidget::$types)]
         );
         $model->addRule(
             ['sorttype'],
