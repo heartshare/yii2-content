@@ -6,7 +6,7 @@
  *  * @var  insolita\content\models\Category $category
  */
 
-$this->title =($category->name!='all')? 'Статьи - ' . \yii\helpers\Html::encode($category->name):'Статьи';
+$this->title =  \yii\helpers\Html::encode($category->name);
 $this->params['breadcrumbs'][] = $this->title;
 $this->params['metaKeys'] = $category->metaKey;
 $this->params['metaDesc'] = $category->metaDesc;
