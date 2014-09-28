@@ -46,14 +46,14 @@ $form->field($model, 'image')->widget(
         'clientEvents' => [
             'fileuploaddone' =>
                 'function (e, data){
-                    console.log("uploaded with state "+JSON.stringify(data))
+                    console.log("uploaded with state "+JSON.stringify(data.responseJSON))
                     $.pjax.reload({container:"#coverpjax",timeout:5000,url:"'
                                  . yii\helpers\Url::to(['list', 'type' => $type])
                                  . '",push:false,replace:false,scrollTo:"#coverpjax"});
                 }',
             'fileuploadfail'=>
                 'function (e, data){
-                    console.log("upload fail "+JSON.stringify(data));
+                    console.log("upload fail "+JSON.stringify(data.responseJSON));
                 }',
         ]
     ]
