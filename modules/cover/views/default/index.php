@@ -46,7 +46,7 @@ $form->field($model, 'image')->widget(
         'clientEvents' => [
             'fileuploaddone' =>
                 'function (e, data){
-                    console.log("uploaded with state "+JSON.stringify(data))
+                    console.log("uploaded with state "+data["responseJSON"])
                     $.pjax.reload({container:"#coverpjax",timeout:5000,url:"'
                                  . yii\helpers\Url::to(['list', 'type' => $type])
                                  . '",push:false,replace:false,scrollTo:"#coverpjax"});
