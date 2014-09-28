@@ -60,7 +60,7 @@ class Covers extends SActiveRecord
             ['conttype', 'safe'],
             [
                 'image', 'image', 'extensions' => ['jpg', 'jpeg', 'gif', 'png'],
-                'mimeTypes' => ['image/jpg', 'image/gif', 'image/png'],
+                'mimeTypes' => ['image/jpg','image/jpeg', 'image/gif', 'image/png'],
                 'maxFiles'=>1,
                 'maxSize'=>2*1024*1024
             ]
