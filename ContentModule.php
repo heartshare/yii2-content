@@ -51,6 +51,7 @@ class ContentModule extends \yii\base\Module implements BootstrapInterface
                 '/category/<slug:[\w\-]+>' => 'content/front/category',
                 '/category/<slug:[\w\-]+>/<page:[\d+]>' => 'content/front/category',
                 '/content'=>'content/front/category',
+                '/content/<page:[\d+]>'=>'content/front/category',
                 '/showtag/<name:[\w\-]+>' => 'content/front/showtag',
                 '/search' => 'content/front/search',
                 '/feedback' => 'content/front/feedback',
