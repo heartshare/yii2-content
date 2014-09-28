@@ -60,7 +60,8 @@ $form->field($model, 'text')->widget(
     \vova07\imperavi\Widget::className(),
     [
         'id' => 'text',
-        'plugins' => ['attachmanager' => '\insolita\content\modules\uploader\AttachManagerPluginAsset'],
+        'plugins' => ['subsup' => '\insolita\extimperavi\SubsupPluginAsset',
+            'attachmanager' => '\insolita\extimperavi\AttachManagerPluginAsset'],
         'settings' => \yii\helpers\ArrayHelper::merge(
                 Yii::$app->getModule('content')->getModule('uploader')->getRedactorSettings(),
                 [

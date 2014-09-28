@@ -5,9 +5,9 @@ use kartik\builder\Form;
 use kartik\datecontrol\DateControl;
 
 /**
- * @var yii\web\View $this
+ * @var yii\web\View                    $this
  * @var insolita\content\models\Article $model
- * @var yii\widgets\ActiveForm $form
+ * @var yii\widgets\ActiveForm          $form
  */
 ?>
 
@@ -20,48 +20,48 @@ use kartik\datecontrol\DateControl;
             'enableClientValidation' => false,
             'enableAjaxValidation' => false,
             'action' => ($model->isNewRecord
-                    ? \yii\helpers\Url::to(['create'])
-                    : \yii\helpers\Url::to(
-                        ['update', 'id' => $model->{$model->getPk()}]
-                    ))
+                ? \yii\helpers\Url::to(['create'])
+                : \yii\helpers\Url::to(
+                    ['update', 'id' => $model->{$model->getPk()}]
+                ))
         ]
     );
     ?>
     <?php
 
-        \insolita\supergrid\panels\Panel::begin(
-            [
-                'on_lookmod'=>['newpage'],
-                'title' => ($model->isNewRecord
-                        ?
-                        \insolita\things\helpers\Helper::Fa('plus-circle', 'lg') . ' Добавление'
-                        :
-                        \insolita\things\helpers\Helper::Fa('pencil-square-o', 'lg') . ' Редактирование "'
-                        . $model->{$model::$titledAttribute} . '"'),
-                'footer' => '<span class="pull-right">'
-                    . Html::submitButton(
-                        \insolita\things\helpers\Helper::Fa('check-circle', 'lg')
-                        . 'Сохранить',
-                        [
-                            'class' => 'btn btn-success',
-                            'title' => 'Сохранить запись (Enter)',
-                            'id' => 'dirsubmit_' . ($model->isNewRecord ? 'addmodal' : 'updmodal')
-                        ]
-                    )
-                    . '</span>'
-                    . Html::a(
-                        \insolita\things\helpers\Helper::Fa('times-circle', 'lg')
-                        . 'Отмена',
-                        ['index'],
-                        [
-                            'class' => 'btn btn-danger',
-                            'title' => 'Отмена (Esc)',
-                            'id' => 'cancel_' . ($model->isNewRecord ? 'addmodal' : 'updmodal')
-                        ]
-                    ),
+    \insolita\supergrid\panels\Panel::begin(
+        [
+            'on_lookmod' => ['newpage'],
+            'title' => ($model->isNewRecord
+                ?
+                \insolita\things\helpers\Helper::Fa('plus-circle', 'lg') . ' Добавление'
+                :
+                \insolita\things\helpers\Helper::Fa('pencil-square-o', 'lg') . ' Редактирование "'
+                . $model->{$model::$titledAttribute} . '"'),
+            'footer' => '<span class="pull-right">'
+                . Html::submitButton(
+                    \insolita\things\helpers\Helper::Fa('check-circle', 'lg')
+                    . 'Сохранить',
+                    [
+                        'class' => 'btn btn-success',
+                        'title' => 'Сохранить запись (Enter)',
+                        'id' => 'dirsubmit_' . ($model->isNewRecord ? 'addmodal' : 'updmodal')
+                    ]
+                )
+                . '</span>'
+                . Html::a(
+                    \insolita\things\helpers\Helper::Fa('times-circle', 'lg')
+                    . 'Отмена',
+                    ['index'],
+                    [
+                        'class' => 'btn btn-danger',
+                        'title' => 'Отмена (Esc)',
+                        'id' => 'cancel_' . ($model->isNewRecord ? 'addmodal' : 'updmodal')
+                    ]
+                ),
 
-            ]
-        );
+        ]
+    );
 
     echo $form->errorSummary([$model]);
     ?>
@@ -98,6 +98,7 @@ use kartik\datecontrol\DateControl;
         \vova07\imperavi\Widget::className(),
         [
             'id' => 'red_anons',
+            'plugins' => ['subsup' => '\insolita\extimperavi\SubsupPluginAsset'],
             'settings' => [
                 'lang' => 'ru',
                 'convertDivs' => false,
@@ -106,41 +107,51 @@ use kartik\datecontrol\DateControl;
             ]
         ]
     )?>
+    !
     <?php echo $form->field($model, 'full')->widget(
         \vova07\imperavi\Widget::className(),
         [
             'id' => 'red_full',
-            'plugins' => ['attachmanager' => '\insolita\content\modules\uploader\AttachManagerPluginAsset'],
+            'plugins' => [
+                'subsup' => '\insolita\extimperavi\SubsupPluginAsset',
+                'attachmanager' => '\insolita\extimperavi\AttachManagerPluginAsset'
+            ],
             'settings' => \yii\helpers\ArrayHelper::merge(
-                    Yii::$app->getModule('content')->getModule('uploader')->getRedactorSettings(),
-                    [
-                        'lang' => 'ru',
-                        'convertDivs' => false,
-                        'convertVideoLinks' => true,
-                        'pastePlainText' => true,
-                        'deniedTags' => ['html', 'head', 'link', 'body', 'meta', 'script', 'footer', 'applet']
-                    ]
-                )
+                Yii::$app->getModule('content')->getModule('uploader')->getRedactorSettings(),
+                [],
+                [
+                    'lang' => 'ru',
+                    'buttons' => [
+                        'html', 'formatting', 'bold', 'italic', 'deleted', 'unorderedlist', 'orderedlist',
+                        'outdent', 'indent', 'image', 'video', 'file', 'table', 'link', 'alignment', '|',
+                        'horizontalrule', 'superscript', 'subscript'
+                    ],
+                    //  'convertDivs' => false,
+                    'convertVideoLinks' => true,
+                    'pastePlainText' => true,
+                    'deniedTags' => ['html', 'head', 'link', 'body', 'meta', 'script', 'footer', 'applet']
+                ]
+            )
         ]
     )?>
-    <?php if(Yii::$app->params['use_tags']):?>
-    <?php
-    $alltags = array_values(\insolita\content\models\Tags::getList());
-    $alltags = count($alltags) ? $alltags : ["" => ""];
-    echo $form->field($model, 'taglist')->widget(
-        \kartik\widgets\Select2::classname(),
-        [
-            'data' => $alltags,
-            'options' => ['placeholder' => 'Метки'],
-            'pluginOptions' => [
-                'tags' => $alltags,
-                'allowClear' => 'true',
-                'minimumInputLength' => 0,
-                'maximumInputLength' => 45
-            ],
-        ]
-    );?>
-    <?php endif;?>
+    <?php if (Yii::$app->params['use_tags']): ?>
+        <?php
+        $alltags = array_values(\insolita\content\models\Tags::getList());
+        $alltags = count($alltags) ? $alltags : ["" => ""];
+        echo $form->field($model, 'taglist')->widget(
+            \kartik\widgets\Select2::classname(),
+            [
+                'data' => $alltags,
+                'options' => ['placeholder' => 'Метки'],
+                'pluginOptions' => [
+                    'tags' => $alltags,
+                    'allowClear' => 'true',
+                    'minimumInputLength' => 0,
+                    'maximumInputLength' => 45
+                ],
+            ]
+        );?>
+    <?php endif; ?>
     <?php
     $model->loadDefaultValues();
     echo $form->field($model, 'active')->checkbox([])?>
@@ -169,33 +180,33 @@ use kartik\datecontrol\DateControl;
             'items' => [
                 'SEO-данные (не обязательно, генерируются автоматом)' => [
                     'content' => Form::widget(
-                            [
-                                'model' => $model,
-                                'form' => $form,
-                                'columns' => 1,
-                                'attributes' => [
-                                    'slug' => [
-                                        'type' => Form::INPUT_TEXT,
-                                        'options' => ['placeholder' => ' SEO-Ссылка(автоматом)...', 'maxlength' => 255]
-                                    ],
-                                    'metak' => [
-                                        'type' => Form::INPUT_TEXT,
-                                        'options' => ['placeholder' => ' SEO-ключи...', 'maxlength' => 255]
-                                    ],
-                                    'metadesc' => [
-                                        'type' => Form::INPUT_TEXT,
-                                        'options' => ['placeholder' => ' SEO-описание...', 'maxlength' => 255]
-                                    ],
+                        [
+                            'model' => $model,
+                            'form' => $form,
+                            'columns' => 1,
+                            'attributes' => [
+                                'slug' => [
+                                    'type' => Form::INPUT_TEXT,
+                                    'options' => ['placeholder' => ' SEO-Ссылка(автоматом)...', 'maxlength' => 255]
+                                ],
+                                'metak' => [
+                                    'type' => Form::INPUT_TEXT,
+                                    'options' => ['placeholder' => ' SEO-ключи...', 'maxlength' => 255]
+                                ],
+                                'metadesc' => [
+                                    'type' => Form::INPUT_TEXT,
+                                    'options' => ['placeholder' => ' SEO-описание...', 'maxlength' => 255]
+                                ],
 
-                                ]
                             ]
-                        )
+                        ]
+                    )
                 ]
             ]
         ]
     )?>
 
-    <?php \insolita\supergrid\panels\Panel::end();?>
+    <?php \insolita\supergrid\panels\Panel::end(); ?>
 
     <?php ActiveForm::end(); ?>
 

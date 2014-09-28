@@ -92,6 +92,7 @@ use kartik\datecontrol\DateControl;
         \vova07\imperavi\Widget::className(),
         [
             'id' => 'red_text',
+            'plugins' => ['subsup' => '\insolita\extimperavi\SubsupPluginAsset'],
             'settings' => [
                 'lang' => 'ru',
                 'convertDivs' => false,
