@@ -49,7 +49,6 @@ echo GridView::widget(
                 'template' => '{recount}&nbsp;{update}&nbsp;&nbsp;{remove}',
                 'buttons' => [
                     'update' => function ($url, $model) {
-                            if ($this->context->_showtype == 'newpage') {
                                 return \yii\bootstrap\Button::widget(
                                     [
                                         'encodeLabel' => false,
@@ -60,27 +59,12 @@ echo GridView::widget(
                                             'data-pjax' => 0,
                                             'href' => \yii\helpers\Url::toRoute(
                                                     ['update', 'id' => $model->{$model->getPk()}]
-                                                ),
+                                                ),'data-link' => \yii\helpers\Url::toRoute(
+                                                ['update', 'id' => $model->{$model->getPk()}]
+                                            )
                                         ]
                                     ]
                                 );
-                            } else {
-                                return \yii\bootstrap\Button::widget(
-                                    [
-                                        'encodeLabel' => false,
-                                        'label' => \insolita\things\helpers\Helper::Fa('pencil'),
-                                        'tagName' => 'a',
-                                        'options' => [
-                                            'class' => 'btn btn-sm btn-default',
-                                            'data-modaler' => true,
-                                            'data-link' => \yii\helpers\Url::toRoute(
-                                                    ['update', 'id' => $model->{$model->getPk()}]
-                                                )
-                                        ]
-                                    ]
-                                );
-                            }
-
                         },
                     'remove' => function ($url, $model) {
                             return \yii\bootstrap\Button::widget(
