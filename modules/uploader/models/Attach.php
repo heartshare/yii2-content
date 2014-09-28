@@ -42,6 +42,10 @@ class Attach extends ActiveRecord
      */
     public function rules()
     {
+        /**
+         * @var \insolita\content\modules\uploader\UploaderModule $uploader
+         **/
+        $uploader = Yii::$app->getModule('content')->getModule('uploader');
         return [
             ['filetitle', 'trim'],
             ['filetitle', 'string', 'min' => 2, 'max' => 200],
@@ -55,16 +59,14 @@ class Attach extends ActiveRecord
             [['imgfile'], 'required', 'on' => 'imgupload'],
             ['filetitle', 'default', 'value' => '-', 'on' => 'imgupload'],
             [['file', 'filetitle'], 'required', 'on' => 'fileupload'],
-            ['imgfile', 'image', 'extensions' => ['jpg', 'jpeg', 'gif', 'png'],
-                'mimeTypes' => ['image/jpg','image/jpeg', 'image/gif', 'image/png'],
+            ['imgfile', 'image', 'extensions' => $uploader->extensionsImg,
+                'mimeTypes' => $uploader->mimeTypesImg,
                 'maxFiles'=>1,
-                'maxSize'=>2*1024*1024, 'on' => 'imgupload'],
-            ['file', 'file', 'extensions' => ['txt', 'zip', 'rar', 'doc','pdf','xls','gz','tar'],
-                'mimeTypes' => ['application/msword','application/pdf','application/x-compressed','application/x-gzip'
-                    ,'application/x-tar','application/zip','application/rar','text/plain'
-                    ,'application/vnd.ms-excel', 'image/gif', 'image/png'],
+                'maxSize'=>$uploader->maxFilesizeImg, 'on' => 'imgupload'],
+            ['file', 'file', 'extensions' => $uploader->extensionsFiles,
+                'mimeTypes' => $uploader->extensionsFiles,
                 'maxFiles'=>1,
-                'maxSize'=>2*1024*1024, 'on' => 'fileupload'],
+                'maxSize'=>$uploader->maxFilesizeFile, 'on' => 'fileupload'],
             ['filename', 'string', 'min' => 2, 'max' => 200],
         ];
     }

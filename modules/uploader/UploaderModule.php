@@ -74,6 +74,19 @@ class UploaderModule extends Module
      **/
     public $pjaxTimeout = 5000;
 
+    public $mimeTypesImg=['image/jpg','image/jpeg', 'image/gif', 'image/png'];
+
+    public $mimeTypesFiles=['application/msword','application/pdf','application/x-compressed','application/x-gzip'
+        ,'application/x-tar','application/zip','application/rar','text/plain'
+        ,'application/vnd.ms-excel', 'image/gif', 'image/png'];
+
+    public $extensionsImg=['jpg', 'jpeg', 'gif', 'png'];
+    public $extensionsFiles=['txt', 'zip', 'rar', 'doc','pdf','xls','gz','tar'];
+
+    public $maxFilesizeImg=2097152;
+    public $maxFilesizeFile=2097152;
+
+
     public function init()
     {
         parent::init();

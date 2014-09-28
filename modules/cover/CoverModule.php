@@ -28,6 +28,12 @@ class CoverModule extends Module
 
     public $cover_midsize;
 
+    public $mimeTypes=['image/jpg','image/jpeg', 'image/gif', 'image/png'];
+
+    public $extensions=['jpg', 'jpeg', 'gif', 'png'];
+
+    public $maxFilesize=2097152;
+
     public function init()
     {
         parent::init();
