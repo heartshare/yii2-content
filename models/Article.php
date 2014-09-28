@@ -483,7 +483,7 @@ class Article extends SActiveRecord
             return Html::img(
                 Yii::$app->getModule('content')->getModule('cover')->cover_midurl . $this->cover->filename,
                 [
-                    'class' => 'img-thumbnail' . ($addclass ? ' ' . $addclass : ''),
+                    'class' => ($addclass ? ' ' . $addclass : ''),
                     'alt' => Html::encode($this->name)
                 ]
             );

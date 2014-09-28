@@ -19,7 +19,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <h1><?= \yii\helpers\Html::encode($model->name) ?></h1>
         </div>
         <div class="news-preview">
-            <?= (\Yii::$app->params['use_artcover']) ? $model->showCoverMid('text-padded pull-left')
+            <?= (\Yii::$app->params['use_artcover']) ? $model->showCoverMid('img-cover text-padded pull-left')
                 : ''; ?>   <?= $model->anons; ?>
         </div>
         <div>
