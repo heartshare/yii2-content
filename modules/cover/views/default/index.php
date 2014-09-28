@@ -46,14 +46,19 @@ $form->field($model, 'image')->widget(
         'clientEvents' => [
             'fileuploaddone' =>
                 'function (e, data){
-                    console.log("uploaded with state "+data["responseJSON"])
-                    $.pjax.reload({container:"#coverpjax",timeout:5000,url:"'
-                                 . yii\helpers\Url::to(['list', 'type' => $type])
-                                 . '",push:false,replace:false,scrollTo:"#coverpjax"});
+                    if(data.result.state==true){
+                        $.pjax.reload({container:"#coverpjax",timeout:5000,url:"'
+                . yii\helpers\Url::to(['list', 'type' => $type])
+                . '",push:false,replace:false,scrollTo:"#coverpjax"});
+                    }else{
+                       alert(data.result.error)
+                    }
                 }',
             'fileuploadfail'=>
                 'function (e, data){
-                    console.log("upload fail "+JSON.stringify(data));
+                    if(data.result.error){
+                      alert(data.result.error);
+                    }
                 }',
         ]
     ]
