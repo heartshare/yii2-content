@@ -193,7 +193,7 @@ class FrontController extends Controller
         return $this->render('page', ['page' => $page]);
     }
 
-    public function actionCategory($slug)
+    public function actionCategory($slug='all')
     {
         $this->layout = '@frontend/views/layouts/' . \Yii::$app->params['artLayout'];
         $arts = new ArticleSearch();
