@@ -158,13 +158,16 @@ class Category extends SActiveRecord
 
     public function afterFind()
     {
-        $this->addtomenu = Url::toRoute(['/content/front/category', 'slug' => $this->slug]);
+        $this->addtomenu = $this->getUrl();
+
         parent::afterFind();
     }
 
     public function getUrl()
     {
-        return Yii::$app->params['siteurl'] . Url::toRoute(['content/front/category', 'slug' => $this->slug]);
+        return Yii::$app->id == 'app-backend' ?
+            Yii::$app->fronturlManager->createAbsoluteUrl(['content/front/category', 'slug' => $this->slug])
+            : Yii::$app->urlManager->createAbsoluteUrl(['content/front/category', 'slug' => $this->slug]);
     }
 
     public static function getLastModify()
