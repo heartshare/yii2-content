@@ -12,22 +12,23 @@ use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use insolita\things\components\SActiveRecord;
 use yii\imagine\Image;
+
 /**
  * This is the model class for table "vg_covers".
  *
  * @property integer               $id
  * @property integer               $filename
  * @property \yii\web\UploadedFile $image
- * @property string $filesize
- * @property string $conttype
- * @property News[] $news
- * @property Article[] $articles
+ * @property string                $filesize
+ * @property string                $conttype
+ * @property News[]                $news
+ * @property Article[]             $articles
  */
 class Covers extends SActiveRecord
 {
     public static $titledAttribute = 'filename';
-    public  $gridDefaults = ['id', 'filename'];
-    public  $ignoredAttributes = [];
+    public $gridDefaults = ['id', 'filename'];
+    public $ignoredAttributes = [];
 
     public $image;
     /**
@@ -56,8 +57,13 @@ class Covers extends SActiveRecord
         return [
             [['filename'], 'string'],
             ['image', 'image'],
-            ['conttype', 'safe']
-            //['image','image','extensions'=>['jpg','jpeg','gif','png'], 'mimeTypes'=>['image/jpg','image/gif','image/png']]
+            ['conttype', 'safe'],
+            [
+                'image', 'image', 'extensions' => ['jpg', 'jpeg', 'gif', 'png'],
+                'mimeTypes' => ['image/jpg', 'image/gif', 'image/png'],
+                'maxFiles'=>1,
+                'maxSize'=>2*1024*1024
+            ]
         ];
     }
 
@@ -137,7 +143,7 @@ class Covers extends SActiveRecord
 
     public function beforeDelete()
     {
-        /**@var \insolita\content\modules\cover\CoverModule $module**/
+        /**@var \insolita\content\modules\cover\CoverModule $module * */
         $module = Yii::$app->getModule('content')->getModule('cover');
         @unlink($module->cover_path . $this->filename);
         @unlink($module->cover_origpath . $this->filename);
@@ -147,11 +153,11 @@ class Covers extends SActiveRecord
 
     public function removeBadfiles()
     {
-        /**@var \insolita\content\modules\cover\CoverModule $module**/
+        /**@var \insolita\content\modules\cover\CoverModule $module * */
         $module = Yii::$app->getModule('content')->getModule('cover');
         $covers = self::find()->all();
         foreach ($covers as $cover) {
-            /**@var Covers $cover**/
+            /**@var Covers $cover * */
             if (!file_exists($this->_module->cover_origpath . $cover->filename) or !file_exists(
                     $this->_module->cover_origpath . $cover->filename
                 )
@@ -173,7 +179,7 @@ class Covers extends SActiveRecord
 
         $covers = self::find()->all();
         foreach ($covers as $cover) {
-            /**@var Covers $cover**/
+            /**@var Covers $cover * */
             if ($cover->news == null && $cover->articles == null) {
                 Helper::logs(['Unused cover ', $cover->getAttributes()]);
                 $cover->delete();
@@ -186,9 +192,9 @@ class Covers extends SActiveRecord
     public function rebuildThumb()
     {
 
-        /**@var \insolita\content\modules\cover\CoverModule $module**/
+        /**@var \insolita\content\modules\cover\CoverModule $module * */
         $module = Yii::$app->getModule('content')->getModule('cover');
-        if(file_exists($module->cover_origpath . $this->filename)){
+        if (file_exists($module->cover_origpath . $this->filename)) {
             @unlink($module->cover_path . $this->filename);
             @unlink($module->cover_midpath . $this->filename);
 
@@ -202,7 +208,7 @@ class Covers extends SActiveRecord
                 ->resize($module->cover_midsize, $module->cover_midsize, Yii\image\drivers\Image::AUTO)
                 ->save($module->cover_midpath . $this->filename);
             Helper::logs('rebuilded ' . $module->cover_path . $this->filename);
-        }else{
+        } else {
             Helper::logs('NOT FOUND! ' . $module->cover_path . $this->filename);
         }
 

@@ -55,8 +55,16 @@ class Attach extends ActiveRecord
             [['imgfile'], 'required', 'on' => 'imgupload'],
             ['filetitle', 'default', 'value' => '-', 'on' => 'imgupload'],
             [['file', 'filetitle'], 'required', 'on' => 'fileupload'],
-            ['imgfile', 'image', 'on' => 'imgupload'],
-            ['file', 'file', 'on' => 'fileupload'],
+            ['imgfile', 'image', 'extensions' => ['jpg', 'jpeg', 'gif', 'png'],
+                'mimeTypes' => ['image/jpg', 'image/gif', 'image/png'],
+                'maxFiles'=>1,
+                'maxSize'=>2*1024*1024, 'on' => 'imgupload'],
+            ['file', 'file', 'extensions' => ['txt', 'zip', 'rar', 'doc','pdf','xls','gz','tar'],
+                'mimeTypes' => ['application/msword','application/pdf','application/x-compressed','application/x-gzip'
+                    ,'application/x-tar','application/zip','application/rar','text/plain'
+                    ,'application/vnd.ms-excel', 'image/gif', 'image/png'],
+                'maxFiles'=>1,
+                'maxSize'=>2*1024*1024, 'on' => 'fileupload'],
             ['filename', 'string', 'min' => 2, 'max' => 200],
         ];
     }
