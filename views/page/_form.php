@@ -86,7 +86,7 @@ use kartik\datecontrol\DateControl;
         \vova07\imperavi\Widget::className(),
         [
             'id' => 'red_full',
-            'plugins' => ['subsup' => '\insolita\extimperavi\SubsupPluginAsset',
+            'plugins' => ['subsup' => '\insolita\extimperavi\SubsupPluginAsset','faicons' => '\insolita\extimperavi\FaiconsPluginAsset',
                 'attachmanager' => '\insolita\extimperavi\AttachManagerPluginAsset'],
             'settings' => \yii\helpers\ArrayHelper::merge(
                     Yii::$app->getModule('content')->getModule('uploader')->getRedactorSettings(),

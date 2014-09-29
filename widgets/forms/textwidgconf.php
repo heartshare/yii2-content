@@ -61,12 +61,12 @@ $form->field($model, 'text')->widget(
     [
         'id' => 'text',
         'plugins' => ['subsup' => '\insolita\extimperavi\SubsupPluginAsset',
+            'faicons' => '\insolita\extimperavi\FaiconsPluginAsset',
             'attachmanager' => '\insolita\extimperavi\AttachManagerPluginAsset'],
         'settings' => \yii\helpers\ArrayHelper::merge(
                 Yii::$app->getModule('content')->getModule('uploader')->getRedactorSettings(),
                 [
                     'lang' => 'ru',
-                    'replaceDivs'=>false,
                     'convertDivs' => false,
                     'convertVideoLinks' => true,
                     'pastePlainText' => true,
