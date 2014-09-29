@@ -20,8 +20,8 @@
 	    "yiisoft/yii2-imagine": "2.0.0-beta",
 	    "yurkinx/yii2-image": "dev-master",
 	    "2amigos/yii2-selectize-widget": "0.1.1",
-	    "insolita/yii2-iconpicker": "dev-master",
-	    "insolita/imperavi-plugins": "dev-master"
+	    "insolita/imperavi-plugins": "dev-master",
+	    "insolita/yii2-iconpicker": "dev-master"
     },
 	"repositories": [
 		{
