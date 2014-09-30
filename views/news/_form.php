@@ -170,9 +170,11 @@ use kartik\datecontrol\DateControl;
     <?php echo \yii\bootstrap\Collapse::widget(
         [
             'items' => [
-                'SEO-данные (не обязательно, генерируются автоматом)' => [
+                [
+                    'label'=>'SEO-данные (не обязательно, генерируются автоматом)',
                     'content' => Form::widget(
                             [
+
                                 'model' => $model,
                                 'form' => $form,
                                 'columns' => 2,
