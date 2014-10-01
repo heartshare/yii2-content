@@ -87,6 +87,7 @@ use kartik\datecontrol\DateControl;
         [
             'items' => [
                 'SEO-данные (не обязательно, генерируются автоматом)' => [
+                    'label'=>'SEO-данные (не обязательно, генерируются автоматом)',
                     'content' => Form::widget(
                             [
                                 'model' => $model,
