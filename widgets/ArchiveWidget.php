@@ -117,6 +117,7 @@ class ArchiveWidget extends TextWidget
 
         foreach($levels as $l=>$cont){
             $items[$l]=[
+                'label'=>$l,
                 'content'=>Html::tag('ul',implode('',$cont),['class'=>'nav nav-stacked'])
             ];
         }
