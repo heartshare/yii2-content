@@ -71,7 +71,7 @@ class ArchiveWidget extends TextWidget
                  $levels[$y][]=Html::tag('li',
                      Html::a(
                          \Yii::$app->formatter->asDate(strtotime($news['publishto']),'LLLL').'&nbsp;'.Html::tag('span',$news['cnt'],['class'=>'badge']),
-                         \Yii::$app->params['siteurl'].Url::toRoute(['/content/front/news-bydate','date'=>$ym])
+                          Url::toRoute(['/content/front/news-bydate','date'=>$ym])
                  ));
              }else{
                  $y=date('Y',strtotime($news['publishto']));
@@ -80,7 +80,7 @@ class ArchiveWidget extends TextWidget
                  $levels[$ym][]=Html::tag('li',
                      Html::a(
                          date('d.m',strtotime($news['publishto'])).'&nbsp;'.Html::tag('span',$news['cnt'],['class'=>'badge']),
-                         \Yii::$app->params['siteurl'].Url::toRoute(['/content/front/news-bydate','date'=>$ymd])
+                          Url::toRoute(['/content/front/news-bydate','date'=>$ymd])
                      ),[]);
              }
         }
@@ -101,7 +101,7 @@ class ArchiveWidget extends TextWidget
                 $levels[$y][]=Html::tag('li',
                     Html::a(
                         \Yii::$app->formatter->asDate(strtotime($news['publishto']),'LLLL').'&nbsp;'.Html::tag('span',$news['cnt'],['class'=>'badge']),
-                        \Yii::$app->params['siteurl'].Url::toRoute(['/content/front/articles-bydate','date'=>$ym])
+                         Url::toRoute(['/content/front/articles-bydate','date'=>$ym])
                     ));
             }else{
                 $y=date('Y',strtotime($news['publishto']));
@@ -110,7 +110,7 @@ class ArchiveWidget extends TextWidget
                 $levels[$ym][]=Html::tag('li',
                     Html::a(
                         date('d.m',strtotime($news['publishto'])).'&nbsp;'.Html::tag('span',$news['cnt'],['class'=>'badge']),
-                        \Yii::$app->params['siteurl'].Url::toRoute(['/content/front/articles-bydate','date'=>$ymd])
+                         Url::toRoute(['/content/front/articles-bydate','date'=>$ymd])
                     ));
             }
         }
