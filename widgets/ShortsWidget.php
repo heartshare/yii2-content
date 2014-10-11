@@ -82,7 +82,7 @@ class ShortsWidget extends TextWidget
         }
         $content .= '<p class="text-centered">' . Html::a(
                 "Смотреть все >",
-                \Yii::$app->params['siteurl'] . Url::toRoute(['/content/front/novosti'])
+                  Url::toRoute(['/content/front/novosti'])
             ) . '</p>';
         return '<div class="text-padded"><div class="row">' . $content . '</div></div>';
     }

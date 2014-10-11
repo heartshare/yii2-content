@@ -101,7 +101,7 @@ class NewsWidget extends TextWidget
                 : '<div>');
             $content .= Html::a(
                 '<h4 class="text-centered">' . $news->name . '</h4>',
-                \Yii::$app->params['siteurl'] . Url::toRoute(['/content/front/news', 'slug' => $news->slug])
+                 Url::toRoute(['/content/front/news', 'slug' => $news->slug])
             );
             if ($this->showcover && $this->showanons) {
                 $content .= "<p>" . $news->showCover('imgingrid pull-left') . $news->anons . "</p>";
@@ -112,7 +112,7 @@ class NewsWidget extends TextWidget
             }
             $content .= '<p class="pull-right">' . Html::a(
                     "Далее >",
-                    \Yii::$app->params['siteurl'] . Url::toRoute(['/content/front/news', 'slug' => $news->slug])
+                     Url::toRoute(['/content/front/news', 'slug' => $news->slug])
                 ) . '</p><div class="clearfix"></div></div>';
         }
         return '<div class="text-padded"><div class="row">' . $content . '</div></div>';

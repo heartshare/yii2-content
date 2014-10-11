@@ -41,7 +41,7 @@ class CategoryWidget extends Widget implements WidgetizerInterface
             /**@var Category $cat */
             $items[] = [
                 'label' => $cat->name . (!$this->showcount ? '' : '<span class="badge">' . $cat->cnt . '</span>'),
-                'url' => \Yii::$app->params['siteurl'] . Url::toRoute(['/content/front/category', 'slug' => $cat->slug])
+                'url' =>   Url::toRoute(['/content/front/category', 'slug' => $cat->slug])
             ];
         }
         if ($this->icon) {
