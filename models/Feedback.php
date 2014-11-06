@@ -107,7 +107,7 @@ class Feedback extends \insolita\things\components\SActiveRecord
     {
         return Yii::$app->mailer->compose()
             ->setTo(Yii::$app->params['contactmail'])
-            ->setFrom([$this->mail => $this->name])
+            ->setFrom([Yii::$app->params['contactmail']])
             ->setSubject(Yii::$app->params['siteurl'] . ' Cообщение из формы обратной связи')
             ->setTextBody($this->text)
             ->send();
