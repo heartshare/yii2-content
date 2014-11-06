@@ -14,11 +14,11 @@ $this->params['breadcrumbs'][] = [
 ];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+    <div class="page-header">
+        <h1><?= \yii\helpers\Html::encode($model->name) ?></h1>
+    </div>
     <div class="article-view">
-        <div class="page-header">
-            <h1><?= \yii\helpers\Html::encode($model->name) ?></h1>
-        </div>
-        <div class="news-preview">
+        <div class="article-preview">
             <?= (\Yii::$app->params['use_artcover']) ? $model->showCoverMid('img-cover text-padded pull-left')
                 : ''; ?>   <?= $model->anons; ?>
         </div>
@@ -27,13 +27,13 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
 
         <div class="clearfix"></div>
-        <?php echo \insolita\share42\ShareWidget::widget(
+        <?php /*echo \insolita\share42\ShareWidget::widget(
             [
                 'shareOptions' => ['data' => ['title' => $model->name, 'description' => $model->anons]],
                 'mode' => \insolita\share42\ShareWidget::MODE_HOR,
                 'showcounters' => false
             ]
-        )?>
+        )*/?>
     </div>
 <?php
 echo \himiklab\colorbox\Colorbox::widget(
