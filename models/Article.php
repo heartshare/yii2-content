@@ -40,11 +40,12 @@ use insolita\things\components\SActiveRecord;
 class Article extends SActiveRecord
 {
     public static $titledAttribute = 'name';
-    public $gridDefaults = ['cat_id', 'cover_id', 'name', 'active', 'views', 'publishto', 'created'];
+    public $gridDefaults = ['cat_id', 'cover_id','addtomenu', 'name', 'active', 'views', 'publishto', 'created'];
     public $ignoredAttributes = ['full', 'full_parsed', 'nocover', 'selcover'];
     public $taglist;
     public $nocover = 0;
     public $selcover;
+    public $addtomenu;
 
     /**
      * @inheritdoc
@@ -194,7 +195,8 @@ class Article extends SActiveRecord
             'nocover' => 'Без обложки',
             'taglist' => 'Метки',
             'selcover' => 'Выбрать из загруженых',
-            'bymanager' => 'Автор'
+            'bymanager' => 'Автор',
+            'addtomenu' => 'Ссылка для меню'
         ];
     }
 
@@ -434,6 +436,7 @@ class Article extends SActiveRecord
             $this->taglist = ($this->tags !== null)
                 ? implode(',', \yii\helpers\ArrayHelper::getColumn($this->tags, 'tagname', false)) : '';
         }
+        $this->addtomenu = $this->getUrl();
     }
 
     public function onView($event)

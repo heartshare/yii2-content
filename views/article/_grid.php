@@ -24,6 +24,24 @@ echo \insolita\supergrid\grid\GridView::widget(
                 'format' => 'raw'
             ],
             ['attribute' => 'name', 'filter' => true],
+            [
+                'attribute' => 'addtomenu',
+                'format' => 'raw',
+                'value' => function ($data) {
+                    return  \yii\helpers\Html::a(
+                        \insolita\things\helpers\Helper::Fa('windows'),
+                        \yii\helpers\Url::toRoute(
+                            ['/menu/default/create', 'url' => $data->addtomenu, 'name' => $data->name]
+                        ),
+                        [
+                            'class' => 'btn btn-sm btn-default',
+                            'title' => 'Добавить в меню',
+                            'data-pjax' => 0,
+                            'target' => '_blank'
+                        ]
+                    );
+                }
+            ],
             ['attribute' => 'slug'],
             ['attribute' => 'taglist'],
             [
