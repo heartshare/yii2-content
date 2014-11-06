@@ -105,6 +105,7 @@ class Feedback extends \insolita\things\components\SActiveRecord
 
     public function sendEmail()
     {
+        /**@TODO set setting email-from and\or setting - strict or not validate mail field  now this filed can contain phone instead email**/
         return Yii::$app->mailer->compose()
             ->setTo(Yii::$app->params['contactmail'])
             ->setFrom([Yii::$app->params['contactmail']])
