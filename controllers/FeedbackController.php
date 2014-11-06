@@ -70,7 +70,7 @@ class FeedbackController extends Controller
                 'class' => CreateAction::className(),
                 'modelClass' => Feedback::className(),
             ],
-            'remove' => [
+            'delete' => [
                 'class' => RemoveAction::className(),
                 'modelClass' => Feedback::className(),
             ],
